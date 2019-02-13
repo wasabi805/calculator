@@ -1,0 +1,14 @@
+{
+  "name": "calculator",
+  "version": "1.0.0",
+  "description": "simple calculator using only html, css, javascript, and jQuery.",
+  "main": "index.js",
+  "scripts": {
+  },
+  "author": "Tim Ocampo",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4"
+  }
+}

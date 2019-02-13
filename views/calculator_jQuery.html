@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link href="https://fonts.googleapis.com/css?family=Libre+Barcode+39+Text" rel="stylesheet">
+
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script>
+
+        $(document).ready(function(){
+            var input ='';
+            var operator;
+
+            $('.button').on('click', function(e){
+                // console.log(e.target.innerHTML)
+
+                var pressed = $(this).attr('id');
+                console.log(parseInt(pressed), 'pressed');
+
+                input+=pressed;
+
+                console.log(input, 'input');
+
+                if(operator && operator !== ''){
+                    var output = input.split(operator);
+                    $('.screen p').html(output[1])
+                }
+                else{
+                    $('.screen p').html(input) // for p tags in screen class, replace html with value of input var
+                }
+            });
+
+
+            function calculate(){
+                var results = input.split(operator);
+                var a =parseInt(results[0]);
+                var b =parseInt(results[1]);
+                var returnResult;
+
+                if(operator === '+'){
+                    returnResult = a+b
+                }else if(operator === '-'){
+                    returnResult = a-b
+                }else if(operator === '*'){
+                    returnResult = a*b
+                }else if(operator === '/'){
+                    returnResult = a/b
+                }
+
+                input = '';
+                operator = '';
+
+                return returnResult
+            };
+
+
+            $('.operator').on('click', function(){
+                $('.screen p').html(''); // clear the screen when an operator is pressed
+                var clickedOperator = $(this).data('value');
+                console.log(clickedOperator);
+
+                if(clickedOperator === '='){
+                    var displayResult = calculate();
+                    $('.screen p').html(displayResult)
+                }else {
+                    operator=clickedOperator;
+                    input+=operator
+                }
+            })
+        })
+
+    </script>
+
+    <style>
+
+        body{
+            display: flex;
+            justify-content: center;
+            position: relative;
+            background-color: aquamarine;
+            font-family: Roboto;
+        }
+
+        .title{
+            font-family: 'Libre Barcode 39 Text', Arial ,SansSerif;
+            font-size: 52px;
+            letter-spacing: 2px ;
+            font-weight: 200;
+        }
+
+        .calculator{
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: #888888;
+            height: 500px;
+            width: 500px;
+            border: 1px solid black;
+        }
+        .screen{
+            position: relative;
+            height: 100px;
+            width: 450px;
+            margin: 0 auto 10px;
+            background-color: #ccffff;
+            border: 1px solid black;
+            border-radius: 10px;
+        }
+
+        .screen p{
+            position: absolute;
+            bottom: 0;
+            right:5px;
+            font-size: 35px;
+        }
+
+
+        .calc-body{
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            width: 450px;
+            margin: 0 auto;
+            background-color: #f2f2f2;
+            border-radius: 10px;
+
+        }
+
+        .numbers-container{
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            height: 350px;
+            width:232px;
+            background-color: #f2f2f2;
+            border-radius: 3px;
+        }
+
+        .button{
+            flex-grow: 1;
+            width: 75px;
+            height: 75px;
+            background-color: #d6fffa;
+            border: 1px solid black;
+            border-radius: 10px;
+
+        }
+
+        button:hover{
+            border: 3px solid black;
+            transform: scale(0.98);
+            cursor: pointer;
+        }
+
+        .operators{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            position: relative;
+            flex-direction: row;
+            width: 200px;
+            background-color: #f2f2f2;
+            border-radius: 3px;
+        }
+
+        .operator{
+            flex-grow: 1;
+            font-size: 18px;
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div class='main'>
+
+        <h3 class="title">Simple Calculator</h3>
+
+        <div class="calculator">
+            <div class="screen">
+                <p> 0.0 </p>
+            </div>
+
+            <div class="calc-body">
+                <div class="numbers-container">
+                    <button id="9" class="button">9</button>
+                    <button id="8" class="button">8</button>
+                    <button id="7" class="button">7</button>
+                    <button id="6" class="button">6</button>
+                    <button id="5" class="button">5</button>
+                    <button id="4" class="button">4</button>
+                    <button id="3" class="button">3</button>
+                    <button id="2" class="button">2</button>
+                    <button id="1" class="button">1</button>
+                    <button id="0" class="button">0</button>
+                </div>
+
+                <div class="operators">
+                    <button class="operator" data-value='+'> + </button>
+                    <button class="operator" data-value='-'> - </button>
+                    <button class="operator" data-value='/'> / </button>
+                    <button class="operator" data-value='*'> * </button>
+                    <button class="operator" data-value='='> = </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
