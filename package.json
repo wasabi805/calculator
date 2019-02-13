@@ -4,11 +4,13 @@
   "description": "simple calculator using only html, css, javascript, and jQuery.",
   "main": "index.js",
   "scripts": {
+    "start": "node server.js"
   },
   "author": "Tim Ocampo",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^6.2.0",
+    "ejs": "^2.6.1",
     "express": "^4.16.4"
   }
 }

@@ -5,13 +5,9 @@ const app = express();
 const path = require('path');
 
 app.get('/', (req, res)=>{
-    res.sendFile(path.join(__dirname + '/views/calculator_jQuery.html'));
+    res.sendFile(path.join(__dirname + '/public/views/calculator_jQuery.html'));
 });
 
-if(process.env.NODE_ENV === 'production'){
-    app.use(express.static('views'));
-    res.sendFile(path.join(__dirname + '/views/calculator_jQuery.html'));
-}
 
 const port = process.env.PORT|| 5000;
 app.listen(port, ()=>{
